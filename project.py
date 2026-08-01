@@ -1,6 +1,7 @@
 def main():
     equation = input("Equation: ")
     if equation == "8008":
+        print("You've entered the Game mode")
         game_mode()
     else:
         num1, operator, num2 = equation.split(" ")
@@ -27,7 +28,8 @@ def main():
                     print("Can't divide by zero")
 
 def game_mode():
-    print("GAME MODE ENABLED")
+    pass
+    
     
 if __name__ == "__main__":
     main()
