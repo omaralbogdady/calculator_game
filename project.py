@@ -1,3 +1,5 @@
+import re
+
 def main():
     equation = input("Equation: ")
     if equation == "8008":
