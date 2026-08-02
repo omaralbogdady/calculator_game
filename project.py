@@ -2,11 +2,12 @@ import re
 
 def main():
     equation = input("Equation: ")
+    equation_match = re.search(r"^([-+]?\d+)\s*([+*/-])\s*([-+]?\d+)$", equation)
     if equation == "8008":
         print("You've entered the Game mode")
         game_mode()
-    else:
-        num1, operator, num2 = equation.split(" ")
+    elif equation_match:
+        num1, operator, num2 = equation_match.groups()
         num1 = int(num1)
         num2 = int(num2)
         match operator:
@@ -17,16 +18,9 @@ def main():
             case "*":
                 print(num1 * num2)
             case "/":
-                if num2 != "0":
+                try:
                     print(num1 / num2)
-                else:
-                    print("Can't divide by zero")
-            case "**":
-                print(num1 ** num2)
-            case "//":
-                if num2 != "0":
-                    print(num1 / num2)
-                else:
+                except ZeroDivisionError:
                     print("Can't divide by zero")
 
 def game_mode():
