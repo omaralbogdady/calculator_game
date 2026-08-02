@@ -1,7 +1,7 @@
 import re
 
 def main():
-    equation = input("Equation: ")
+    equation = input("Equation: ").strip()
     equation_match = re.search(r"^([-+]?\d*.?\d+)\s*([+*/-])\s*([-+]?\d*.?\d+)$", equation)
     if equation == "8008":
         print("You've entered the Game mode")
