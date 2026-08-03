@@ -3,16 +3,18 @@ import time
 import sys
 
 class Player:
-    def __init__(self):
-        pass
+    def __init__(self, health=20, rta=2, type="Random"):
+        self.health = health
+        self.rta = rta
+        self.type = type
 
     @classmethod
     def get_player_type(cls):
         print("""There are 4 classes of players:
-              1. Light: fights every turn, but hits between 5-10 hp
-              2. Medium: Fights every 2 turns, but hits between 7-15 hp
-              3. Heavy: Fights every 3 turns, but hits between 13-20 hp
-              4. Random (If you're feeling lucky!): Fights every 1-3 turns, and hits between 1-22 hp
+              1. Light: fights every turn, has 20 hp, and hits between 5-10 hp
+              2. Medium: Fights every 2 turns, has 27 hp, and hits between 7-15 hp
+              3. Heavy: Fights every 3 turns, has 35 hp, and hits between 13-20 hp
+              4. Random (If you're feeling lucky!): Fights every 1-3 turns, has 15-40 hp and hits between 1-22 hp
               """)
         try:
             choice = int(input("please input the class you would like based on their number (1 for light, 2 for medium...) or 0 if you would like to quit the game: "))
@@ -20,13 +22,13 @@ class Player:
                 case 0:
                     sys.exit("You have quit the game")
                 case 1:
-                    print("You have chosen the Light class")
+                    return cls(20, 1, "light")
                 case 2:
-                    print("You have chosen the Medium class")
+                    return cls(27, 2, "Medium")
                 case 3:
-                    print("You have chosen the Heavy class")
+                    return cls(35, 3, "Heavy")
                 case 4:
-                    print("You have chosen the Random class")
+                    return cls(type="Random")
                 case _:
                     print("Please Pick a class from the available options")
                     time.sleep(1.5)
