@@ -1,4 +1,40 @@
 import re
+import time
+import sys
+
+class Player:
+    def __init__(self):
+        pass
+
+    @classmethod
+    def get_player_type(cls):
+        print("""There are 4 classes of players:
+              1. Light: fights every turn, but hits between 5-10 hp
+              2. Medium: Fights every 2 turns, but hits between 7-15 hp
+              3. Heavy: Fights every 3 turns, but hits between 13-20 hp
+              4. Random (If you're feeling lucky!): Fights every 1-3 turns, and hits between 1-22 hp
+              """)
+        try:
+            choice = int(input("please input the class you would like based on their number (1 for light, 2 for medium...) or 0 if you would like to quit the game: "))
+            match choice:
+                case 0:
+                    sys.exit("You have quit the game")
+                case 1:
+                    print("You have chosen the Light class")
+                case 2:
+                    print("You have chosen the Medium class")
+                case 3:
+                    print("You have chosen the Heavy class")
+                case 4:
+                    print("You have chosen the Random class")
+                case _:
+                    print("Please Pick a class from the available options")
+                    time.sleep(1.5)
+                    cls.get_player_type()
+        except ValueError:
+            print("Please Pick a class from the available options")
+            time.sleep(1.5)
+            cls.get_player_type()
 
 def main():
     equation = input("Equation: ").strip()
@@ -8,10 +44,10 @@ def main():
         game_mode()
     elif equation_match:
         calculate(equation_match)
-        
 
 def game_mode():
-    pass
+    time.sleep(1)
+    player = Player.get_player_type()
 
 def calculate(equation):
     num1, operator, num2 = equation.groups()
