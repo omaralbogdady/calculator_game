@@ -126,13 +126,32 @@ def check_choices(pc, cc, player, cpu):
         cpu.bullets -= 1
 
 def Game_Complete(winner):
-    global wave
-    game_over == True
+    global wave, game_over
+    game_over = True
     if winner == "Player":
+        new_highscore(wave)
         sys.exit(f"You won in {colored(f"{wave} waves", "green")}!")
     elif winner == "CPU":
         sys.exit(f"The Computer won in {colored(f"{wave} waves", "green")}!")
 
+def new_highscore(wave=100000000):
+    try:
+        with open("high_score.txt", "r") as file:
+            highscore = file.read().strip()
+            if highscore and int(highscore) <= wave:
+                return highscore
+            else:
+                print("Highscore Updated!")
+                with open("high_score.txt", "w") as file:
+                    file.write(str(wave))
+                return 0
+    except (OSError, ValueError):
+        print("Highscore Updated!")
+        with open("high_score.txt", "w") as file:
+            file.write(str(wave))
+        return 0
+        
+    
 def preamble():
         print(f"""Welcome to 007,
 A game about {colored("strategy", "yellow")}, {colored("planning", "yellow")}, and {colored("feeling like James Bond", "yellow")}.
@@ -141,7 +160,8 @@ You and a computer have 3 options every turn:
 2. {colored("Block", "blue")}
 3. {colored("Shoot", "red")}
 Your mission is to take out the computer by shooting when the computer is reloading.
-You can't shoot if you don't have any bullets, and you and the computer can store bullets. Good Luck!""")
+You can't shoot if you don't have any bullets, and you and the computer can store bullets. Good Luck!
+Your Highscore is {colored(new_highscore())} waves.""")
 
 if __name__ == "__main__":
     main()
