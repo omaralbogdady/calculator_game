@@ -1,0 +1,5 @@
+#To import these libraries, run pip install -r requirements.txt
+
+questionary
+termcolor
+pytest
