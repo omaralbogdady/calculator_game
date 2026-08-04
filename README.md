@@ -1,4 +1,4 @@
-Calculator Game
-By Omar Albogdady
-
-To be continued...
+# Calculator Game
+    #### Video Demo:  <URL HERE>
+    #### Description:
+    TODO
