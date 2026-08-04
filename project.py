@@ -42,6 +42,11 @@ class Player:
 
 def main():
     equation = input("Equation: ").strip()
+    parse_input(equation)
+
+
+def parse_input(equation):
+    
     equation_match = re.search(
         r"^([-+]?\d*.?\d+)\s*([+*/-])\s*([-+]?\d*.?\d+)$", equation
     )
@@ -49,7 +54,28 @@ def main():
         cprint("You've entered the Game mode", "green")
         game_mode()
     elif equation_match:
-        calculate(equation_match)
+        return calculate(equation_match)
+    else:
+        print("Invalid Input")
+        return parse_input
+    
+    
+def calculate(equation):
+    num1, operator, num2 = equation.groups()
+    num1 = int(num1)
+    num2 = int(num2)
+    match operator:
+        case "+":
+            return num1 + num2
+        case "-":
+            return num1 - num2
+        case "*":
+            return num1 * num2
+        case "/":
+            try:
+                return num1 / num2
+            except ZeroDivisionError:
+                return "Can't divide by zero"
 
 
 def game_mode():
@@ -80,25 +106,7 @@ def game_mode():
         )
         wave += 1
         time.sleep(0.5)
-
-
-def calculate(equation):
-    num1, operator, num2 = equation.groups()
-    num1 = int(num1)
-    num2 = int(num2)
-    match operator:
-        case "+":
-            print(num1 + num2)
-        case "-":
-            print(num1 - num2)
-        case "*":
-            print(num1 * num2)
-        case "/":
-            try:
-                print(num1 / num2)
-            except ZeroDivisionError:
-                print("Can't divide by zero")
-
+        
 
 def check_choices(pc, cc, player, cpu):
     if pc == "Reload" and cc == "Reload":
@@ -130,9 +138,9 @@ def Game_Complete(winner):
     game_over = True
     if winner == "Player":
         new_highscore(wave)
-        sys.exit(f"You won in {colored(f"{wave} waves", "green")}!")
+        return sys.exit(f"You won in {colored(f"{wave} waves", "green")}!")
     elif winner == "CPU":
-        sys.exit(f"The Computer won in {colored(f"{wave} waves", "green")}!")
+        return sys.exit(f"The Computer won in {colored(f"{wave} waves", "green")}!")
 
 
 def new_highscore(wave=100000000):
@@ -163,6 +171,7 @@ You and a computer have 3 options every turn:
 Your mission is to take out the computer by shooting when the computer is reloading.
 You can't shoot if you don't have any bullets, and you and the computer can store bullets. Good Luck!
 Your Highscore is {colored(new_highscore())} waves.""")
+    return True
 
 
 if __name__ == "__main__":
