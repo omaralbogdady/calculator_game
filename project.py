@@ -22,14 +22,16 @@ class Player:
                 choices=[
                     "Reload",
                     "Block",
-                    "Shoot"
+                    "Shoot",
+                    "Quit Game"
             ]).ask()  # returns value of selection
         else:
             choice = questionary.select(
                 "What do you want to do?",
                 choices=[
                     "Reload",
-                    "Block"
+                    "Block",
+                    "Quit Game"
             ]).ask()  # returns value of selection
         return choice
 
@@ -42,7 +44,7 @@ class Player:
 def main():
     equation = input("Equation: ").strip()
     equation_match = re.search(r"^([-+]?\d*.?\d+)\s*([+*/-])\s*([-+]?\d*.?\d+)$", equation)
-    if equation == "8008":
+    if equation == "007":
         cprint("You've entered the Game mode", "green")
         game_mode()
     elif equation_match:
@@ -58,6 +60,9 @@ def game_mode():
     while game_over != True:
         player_choice = user_player.player_choice()
         computer_choice =cpu_player.computer_choice()
+        
+        if player_choice == "Quit Game":
+            sys.exit(f"{colored("You quit the game", "red")}")
         
         print(f"You choose to {colored(player_choice, "blue")}")
         time.sleep(0.5)
@@ -106,7 +111,6 @@ def check_choices(pc, cc, player, cpu):
         player.bullets -= 1
     elif pc == "Shoot" and cc == "Shoot":
         pass
-
 def Game_Complete(winner):
     game_over == True
     if winner == "Player":
