@@ -1,6 +1,6 @@
 import pytest
 import sys
-from project import parse_input, preamble, Player, Game_Complete
+from project import parse_input, preamble, Player, Game_Complete, calculate
 
 def test_parse_input():
     assert parse_input("2+2") == 4

@@ -54,7 +54,9 @@ def parse_input(equation):
         cprint("You've entered the Game mode", "green")
         game_mode()
     elif equation_match:
-        return print(calculate(equation_match))
+        answer = calculate(equation_match)
+        print(answer)
+        return answer
     else:
         print("Invalid Input")
         return parse_input
