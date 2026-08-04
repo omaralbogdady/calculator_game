@@ -7,9 +7,8 @@ from termcolor import cprint, colored
 
 
 game_over = False
-reload_text = colored("Reload","blue")
-block_text = colored("Block", "cyan")
-shoot_text = colored("Shoot", "red")
+
+wave = 1
 
 class Player:
     def __init__(self):
@@ -35,11 +34,18 @@ class Player:
             ]).ask()  # returns value of selection
         return choice
 
-    def computer_choice(self):
-        if self.bullets == 0:
-            return random.choice(["Reload", "Block"])
-        if self.bullets > 0:
-            return random.choice(["Reload", "Block", "Shoot"])
+    def computer_choice(self, player_bullets):
+        if self.bullets == 0 and player_bullets > 0:
+            result = random.choices(["Reload", "Block"], weights=[0.35,0.65])
+            return result[0]
+        elif self.bullets == 0 and player_bullets == 0:
+            return "Reload"
+        
+        if self.bullets > 0 and player_bullets == 0:
+            result = random.choices(["Reload", "Shoot"], weights=[0.2, 0.8])
+            return result[0]
+        
+        return random.choice(["Reload","Block","Shoot"])
 
 def main():
     equation = input("Equation: ").strip()
@@ -58,18 +64,24 @@ def game_mode():
     time.sleep(0.5)
     
     while game_over != True:
+        global wave
+        print(f"{colored(f"Wave {wave}", "green")}")
         player_choice = user_player.player_choice()
-        computer_choice =cpu_player.computer_choice()
+        computer_choice =cpu_player.computer_choice(player_bullets=user_player.bullets)
+        time.sleep(0.5)
         
         if player_choice == "Quit Game":
             sys.exit(f"{colored("You quit the game", "red")}")
         
         print(f"You choose to {colored(player_choice, "blue")}")
-        time.sleep(0.5)
+        time.sleep(0.25)
         print(f"The computer chooses to {colored(computer_choice, "red")}")
+        time.sleep(0.25)
         
         check_choices(player_choice, computer_choice, user_player, cpu_player)
         print(f"The Player has {colored(user_player.bullets, "yellow")} bullet(s) and the Computer has {colored(cpu_player.bullets, "yellow")} bullet(s)")
+        wave += 1
+        time.sleep(0.5)
         
 
 def calculate(equation):
@@ -110,13 +122,16 @@ def check_choices(pc, cc, player, cpu):
     elif pc == "Shoot" and cc == "Block":
         player.bullets -= 1
     elif pc == "Shoot" and cc == "Shoot":
-        pass
+        player.bullets -= 1
+        cpu.bullets -= 1
+
 def Game_Complete(winner):
+    global wave
     game_over == True
     if winner == "Player":
-        sys.exit("The Player has won")
+        sys.exit(f"You won in {colored(f"{wave} waves", "green")}!")
     elif winner == "CPU":
-        sys.exit("The Computer has won")
+        sys.exit(f"The Computer won in {colored(f"{wave} waves", "green")}!")
 
 def preamble():
         print(f"""Welcome to 007,
