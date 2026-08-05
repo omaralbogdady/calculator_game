@@ -23,15 +23,15 @@ When prompted for an equation, if you input `007` , the game will enter the game
 
 When you first enter the game mode, you will see a preamble explaining the game:
 
-`Welcome to 007,
-A game about strategy, planning, and feeling like James Bond.
-You and a computer have 3 options every turn:
-1. Reload
-2. Block
-3. Shoot
-Your mission is to take out the computer by shooting when the computer is reloading.
-You can't shoot if you don't have any bullets, and you and the computer can stor bullets. Good Luck!
-Your Highscore is {highscore} waves.`
+`Welcome to 007,`
+`A game about strategy, planning, and feeling like James Bond.`
+`You and a computer have 3 options every turn:`
+`1. Reload`
+`2. Block`
+`3. Shoot`
+`Your mission is to take out the computer by shooting when the computer is reloading.`
+`You can't shoot if you don't have any bullets, and you and the computer can stor bullets. Good Luck!`
+`Your Highscore is {highscore} waves.`
 
 If it is your first time playing the game, your high score will be 0.
 
