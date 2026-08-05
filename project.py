@@ -58,8 +58,7 @@ def parse_input(equation):
         print(answer)
         return answer
     else:
-        print("Invalid Input")
-        return parse_input
+        return print("Invalid Input")
     
     
 def calculate(equation):
