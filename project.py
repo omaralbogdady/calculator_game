@@ -160,6 +160,8 @@ def new_highscore(wave=100000000):
         with open("high_score.txt", "w") as file:
             file.write(str(wave))
         return 0
+    except ValueError:
+        return 0
 
 
 def preamble():
@@ -171,7 +173,7 @@ You and a computer have 3 options every turn:
 3. {colored("Shoot", "red")}
 Your mission is to take out the computer by shooting when the computer is reloading.
 You can't shoot if you don't have any bullets, and you and the computer can store bullets. Good Luck!
-Your Highscore is {colored(new_highscore())} waves.""")
+Your Highscore is {colored(str(new_highscore()))} waves.""")
     return True
 
 
