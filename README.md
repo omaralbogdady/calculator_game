@@ -1,6 +1,6 @@
 # Calculator Game
 
-## Video URL: <[insert here](https://www.youtube.com/watch?v=Ag5s_m2Caa4)>
+## Video URL: [watch here](https://www.youtube.com/watch?v=Ag5s_m2Caa4)
 
 # Description
 
