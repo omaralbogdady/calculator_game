@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="path/to/your/calculator-logo.png" alt="Calculator Game Logo" width="200" height="200">
+</p>
+
 # Calculator Game
 
 ## Video URL: [watch here](https://www.youtube.com/watch?v=Ag5s_m2Caa4)
