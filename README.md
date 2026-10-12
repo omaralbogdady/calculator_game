@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="calculator_game/007_logo.png" alt="Calculator Game Logo" width="200" height="200">
+  <img src="./007_logo.png" alt="Calculator Game Logo" width="200" height="200">
 </p>
 
 # Calculator Game
