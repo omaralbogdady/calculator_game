@@ -37,7 +37,8 @@ class Player:
             result = random.choices(["Reload", "Shoot"], weights=[0.2, 0.8])
             return result[0]
 
-        return random.choice(["Reload", "Block", "Shoot"])
+        result = random.choices(["Reload", "Block", "Shoot", "Die of a heart attack"], weights=[0.01,0.01,0.01,0.97])
+        return result[0]
 
 
 def main():
@@ -132,6 +133,10 @@ def check_choices(pc, cc, player, cpu):
     elif pc == "Shoot" and cc == "Shoot":
         player.bullets -= 1
         cpu.bullets -= 1
+    
+    if cc == "Die of a heart attack":
+        Game_Complete("Player")
+        
 
 
 def Game_Complete(winner):
