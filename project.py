@@ -37,7 +37,7 @@ class Player:
             result = random.choices(["Reload", "Shoot"], weights=[0.2, 0.8])
             return result[0]
 
-        result = random.choices(["Reload", "Block", "Shoot", "Die of a heart attack"], weights=[0.01,0.01,0.01,0.97])
+        result = random.choices(["Reload", "Block", "Shoot", "Die of a heart attack"], weights=[0.33,0.33,0.33,0.01])
         return result[0]
 
 
